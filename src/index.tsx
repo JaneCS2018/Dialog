@@ -1,8 +1,19 @@
-import React from 'react';
+import React from 'react'
+import Dialog, { DialogType, DialogTitle, DialogContent, DialogActions } from './components/Dialog/Dialog';
+
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+
+
+
+const App = () => {
+  return (
+    <div style={{margin:'100px'}}>
+      <Dialog type={DialogType.Simple} title={DialogTitle.Simple} content={DialogContent.Simple} actions={DialogActions.Simple} />
+      <Dialog type={DialogType.Alert} title={DialogTitle.Alert} content={DialogContent.Alert} actions={DialogActions.Alert}/>
+      <Dialog type={DialogType.Form} title={DialogTitle.Form} content={DialogContent.Form} actions={DialogActions.Form} />
+    </div>
+  )
+}
 
 ReactDOM.render(
   <React.StrictMode>
@@ -10,8 +21,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
