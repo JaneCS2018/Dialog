@@ -9,6 +9,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100vw;
+    height: 100vh;
+    font-family: "Roboto" 
 }
 
 .dialog-btn{
@@ -40,29 +43,39 @@
     background: rgba(0, 0, 0, 0.5);
     transition: opacity 500ms;
     opacity: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     cursor: pointer;
   }
   .overlay-display{
     display: none;
   }
+  // Several different types of dialogue
   .dialog-container-simple{
     width: 252px;
     height: 248px;
     border-radius: 4px;
     background-color: white;
-    font-family: "Roboto"
-    
   }
+
+ .dialog-container-alert{
+    width: 600px;
+    height: 180px;
+    border-radius: 4px;
+    background-color: white;
+ }
+ .dialog-container-form{
+    width: 600px;
+    height: 245px;
+    border-radius: 4px;
+    background-color: white;
+}
+
 .dialog-header{
   width: 100%;
   height: 64px;
   position: relative;
 }
 
-.dialog-title-simple{
+.dialog-title{
       position: absolute;
       top:16px;
       left: 24px;
@@ -73,28 +86,43 @@
       letter-spacing: 0.15px;
   }
 
-  .dialog-content-simple{
-    height: 123px;
-    overflow: auto;
-  }
+ .dialog-content{
+   width: 100%;
+   height: 45%;
+   padding: 0px 24px;
+   font-size: 16px;
+   font-weight: 400;
+   line-height: 24px;
+   letter-spacing: 0.15px;
+   color: rgba(0, 0, 0, 0.6);
+ }
+ 
 
-  .dialog-row{
-    width:100%;
-    height: 55px;
-    display: flex;
-    align-items: center;
-    padding-left:16px;
-    margin: 3px 0;
-  }
-  .dialog-row:hover{
-   background-color: rgba(235, 235, 235, 0.7);
-  }
-  .dialog-row span{
-    margin-left:16px;
-    font-weight: 400;
-    line-height: 24px;
-    letter-spacing: 0.15px;
-  }
-  .dialog-row-addUser{
-    cursor: pointer;
-  }
+ .dialog-content input{
+  font: inherit;
+  letter-spacing: inherit;
+  color: currentcolor;
+  padding: 4px 0px 5px;
+  border: 0px;
+  box-sizing: content-box;
+  background: none;
+  height: 1.4375em;
+  margin: 0px;
+  display: block;
+  min-width: 0px;
+  width: 100%;
+  animation-name: mui-auto-fill-cancel;
+  animation-duration: 10ms;
+ }
+
+ .dialog-actions{
+  padding: 0 24px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  color: rgba(0, 0, 0, 0.6);
+ }
+ 
+
+ 

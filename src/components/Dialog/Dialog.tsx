@@ -1,8 +1,6 @@
-import React, { useState } from 'react'
+import React, {useState } from 'react'
 import './Dialog.scss'
-import { ReactComponent as UserAccount } from '../../asset/icon/Account.svg';
-import { ReactComponent as AddUser } from '../../asset/icon/AddUser.svg';
-declare module "*.svg"
+
 
 export enum DialogType {
     Simple,
@@ -10,90 +8,74 @@ export enum DialogType {
     Form
 }
 
-export enum DialogTitle {
-    Simple,
-    Alert,
-    Form
+// Define the props
+export interface DialogProps {
+    type?:DialogType,
+    onOpen?:boolean,
+    onClose?:()=>void,
+    children?: React.ReactNode;
 }
 
-export enum DialogContent {
-    Simple,
-    Alert,
-    Form
+interface DialogTitleProps{
+    children?: React.ReactNode;
 }
 
-export enum DialogActions {
-    Simple,
-    Alert,
-    Form
+interface DialogContentProps{
+    children?: React.ReactNode;
 }
 
-interface DialogProps {
-    /** set Dialog Type*/
-    type?: DialogType
-    /** set Dialog Title*/
-    title?: DialogTitle,
-    /** set Dialog Content*/
-    content?: DialogContent,
-    /** set Dialog Actions*/
-    actions?: DialogActions,
-    /** set Dialog click open*/
-    onOpen?: () => void,
-    /** set Dialog click close*/
-    onClose?: () => void
+interface DialogActionsProps{
+    children?: React.ReactNode;
 }
+
+export const DialogTitle: React.FC<DialogTitleProps> = ({
+   children
+  }) => (
+    <header className='dialog-header'>
+        <div className='dialog-title'>
+             {children}
+        </div>
+    </header>
+  );
+ 
+export const DialogContent: React.FC<DialogContentProps> = ({
+    children
+   }) => (
+     <div className='dialog-content'>
+         {children}
+     </div>
+   ); 
+
+export const DialogActions: React.FC<DialogActionsProps> = ({
+    children
+   }) => (
+     <div className='dialog-actions'>
+         <div className='dialog-actions-container'>
+            {children}
+          </div>    
+     </div>
+   ); 
+
 
 const Dialog: React.FC<DialogProps> = ({
-    type = DialogType.Simple,
-    title = DialogTitle.Simple,
-    content = DialogContent.Simple,
-    actions = DialogActions.Simple,
+    type=DialogType.Alert,
     onOpen,
-    onClose
-
+    onClose,
+    children,
 }) => {
   
-    const [isShow, setIsShow] = useState<boolean>(false)
-
-    const onOpenHandler = () => {
-        setIsShow(true)
-    }
-
-    const onCloseHandler = () => {
-        setIsShow(false)
-    }
-
-    return (
-        <div className='dialog'>
-            <button className='dialog-btn' onClick={onOpenHandler}>{generateDialogButtonText(type)}</button>
-            {/* Dialogue Content */}
-            <section className={isShow ? 'overlay' : ' overlay overlay-display'} onClick={onCloseHandler}>
+    return(
+        <section className={onOpen? 'overlay':'overlay overlay-display'} onClick={onClose}>
+           <div className='dialog'>
                 <div className={generateDialogWindow(type)}>
-                    <header className='dialog-header'>
-                        <div className='dialog-title-simple'>
-                            {generateDialogTitle(title)}
-                        </div>
-                    </header>
-                    <div>
-                        {generateDialogContent(content)}
-                        <footer>
-                          {generateDialogActions(actions)}
-                        </footer>
-                       
-                    </div>
-                   
+                    {children}
                 </div>
-            </section>
-        </div>
+            </div>  
+        </section>
     )
+   
 }
 
-const generateDialogButtonText = (type: DialogType) => {
-    return type === DialogType.Simple ? 'OPEN SIMPLE DIALOG' :
-        type === DialogType.Alert ? 'OPEN ALERT DIALOG' :
-            'OPEN FORM DIALOG'
-
-}
 
 const generateDialogWindow = (type: DialogType) => {
     return type === DialogType.Simple ? 'dialog-container-simple' :
@@ -101,50 +83,5 @@ const generateDialogWindow = (type: DialogType) => {
             'dialog-container-form'
 }
 
-const generateDialogTitle = (title: DialogTitle) => {
-    return title === DialogTitle.Simple ? 'Set backup account' :
-        title === DialogTitle.Alert ? "Use Google's location service?" :
-            'Subscribe'
-}
-
-const generateDialogContent = (content: DialogContent) => {
-
-    
-    
-    if(content === DialogContent.Simple){
-        const items = [
-            { 
-              email: 'username@gmail.com'
-            },
-            { email: 'user02@gmail.com' }]
-        return <div className='dialog-content-simple'>
-                {items.map(item =>
-                    <div className="dialog-row">
-                        <UserAccount />
-                        <span>{item.email}</span>
-                    </div>
-                )}
-            </div>
-    }else if (content === DialogContent.Alert){
-            return <div>Alert</div>
-    }else if (content === DialogContent.Form){
-            return <div>Form</div>
-    }    
-
-
-}
-
-const generateDialogActions = (action: DialogActions) => {
-    if(action === DialogActions.Simple){
-        return  <div className="dialog-row dialog-row-addUser">
-                    <AddUser />
-                     <span >Add account</span>
-                </div>
-    }else if (action === DialogActions.Alert){
-         return <div>Alert</div>
-    }else if (action === DialogActions.Form){
-         return <div>Form</div>
-    }    
-}
 
 export default Dialog;
