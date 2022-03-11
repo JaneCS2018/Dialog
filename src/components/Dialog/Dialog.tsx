@@ -1,4 +1,4 @@
-import React, {useState } from 'react'
+import React, { useState } from 'react'
 import './Dialog.scss'
 
 
@@ -10,70 +10,73 @@ export enum DialogType {
 
 // Define the props
 export interface DialogProps {
-    type?:DialogType,
-    onOpen?:boolean,
-    onClose?:()=>void,
+    type?: DialogType,
+    onOpen?: boolean,
+    onClose?: (event: any) => void,
     children?: React.ReactNode;
 }
 
-interface DialogTitleProps{
+interface DialogTitleProps {
     children?: React.ReactNode;
 }
 
-interface DialogContentProps{
+interface DialogContentProps {
     children?: React.ReactNode;
 }
 
-interface DialogActionsProps{
+interface DialogActionsProps {
     children?: React.ReactNode;
 }
 
 export const DialogTitle: React.FC<DialogTitleProps> = ({
-   children
-  }) => (
+    children
+}) => (
     <header className='dialog-header'>
         <div className='dialog-title'>
-             {children}
+            {children}
         </div>
     </header>
-  );
- 
+);
+
 export const DialogContent: React.FC<DialogContentProps> = ({
     children
-   }) => (
-     <div className='dialog-content'>
-         {children}
-     </div>
-   ); 
+}) => (
+    <div className='dialog-content'>
+        {children}
+    </div>
+);
 
 export const DialogActions: React.FC<DialogActionsProps> = ({
     children
-   }) => (
-     <div className='dialog-actions'>
-         <div className='dialog-actions-container'>
+}) => (
+    <div className='dialog-actions'>
+        <div className='dialog-actions-container'>
             {children}
-          </div>    
-     </div>
-   ); 
+        </div>
+    </div>
+);
 
 
 const Dialog: React.FC<DialogProps> = ({
-    type=DialogType.Alert,
+    type = DialogType.Alert,
     onOpen,
     onClose,
     children,
 }) => {
-  
-    return(
-        <section className={onOpen? 'overlay':'overlay overlay-display'} onClick={onClose}>
-           <div className='dialog'>
-                <div className={generateDialogWindow(type)}>
+
+    return (
+        <div>
+            <div className='dialog'>
+                <div className={generateDialogWindow(type)} >
                     {children}
                 </div>
-            </div>  
-        </section>
+            </div>
+            <section className={onOpen ? 'overlay' : 'overlay overlay-display'} id="overlay" onClick={onClose}>
+
+            </section>
+        </div>
     )
-   
+
 }
 
 

@@ -1,13 +1,10 @@
 .App-contnet{
   width: 100vw;
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
 }
 .dialog-btn{
    justify-content: center;
-    position: relative;
     box-sizing: border-box;
     background-color: transparent;
     outline: 0;
@@ -32,4 +29,9 @@
     transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
     border: 1px solid rgba(25, 118, 210, 0.5);
     color: #1976d2;
+    position: absolute;
+    /* Put button center */
+    left: 50%;
+    top:50%;
+    transform: translate(-50%, -50%);
 }

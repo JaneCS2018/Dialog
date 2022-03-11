@@ -6,12 +6,17 @@
 }
 
 .dialog{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: relative;
     width: 100vw;
     height: 100vh;
     font-family: "Roboto" 
+}
+.dialog>div{
+  position: absolute;
+  left:50%;
+  top:50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
 }
 
 .dialog-btn{
@@ -43,7 +48,7 @@
     background: rgba(0, 0, 0, 0.5);
     transition: opacity 500ms;
     opacity: 1;
-    cursor: pointer;
+    z-index: 1;
   }
   .overlay-display{
     display: none;
