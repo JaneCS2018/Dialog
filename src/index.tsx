@@ -25,7 +25,7 @@ const App = () => {
 
       <button className="dialog-btn" onClick={handleClickOpen}>Open simple dialog</button>
         {open &&
-        <Dialog type={DialogType.Form} onOpen={open} onClose={handleClose} >
+        <Dialog type={DialogType.Simple} onOpen={open} onClose={handleClose} >
             <DialogTitle>Title</DialogTitle>
             <DialogContent>
             <label >Enter email addresses:</label>

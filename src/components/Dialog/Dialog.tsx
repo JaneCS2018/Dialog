@@ -66,13 +66,12 @@ const Dialog: React.FC<DialogProps> = ({
 
     return (
         <div>
-            <div className='dialog'>
+            <section className='dialog'>
                 <div className={generateDialogWindow(type)} >
                     {children}
                 </div>
-            </div>
+            </section>
             <section className={onOpen ? 'overlay' : 'overlay overlay-display'} id="overlay" onClick={onClose}>
-
             </section>
         </div>
     )
